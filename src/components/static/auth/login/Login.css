@@ -1,0 +1,98 @@
+.main_login_sec{
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 100%;
+    height: 90vh;
+        background-image: url('login-bg.svg'); /* Replace 'your-image-url.jpg' with the URL of your background image. */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+.login_formBx{
+    width: 53.0rem;
+    height: 60vh;
+    background-color: #FFFFFF;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+.login_formBx h1{
+    font-family: Fjalla One;
+font-size: 2.4rem;
+font-weight: 400;
+line-height: 3.0rem;
+letter-spacing: 0em;
+text-align: center;
+color: #000000;
+
+}
+.labelInp{
+    font-family: Poppins;
+font-size: 1.6rem;
+font-weight: 600;
+line-height: 2.4rem;
+letter-spacing: 0em;
+text-align: left;
+
+}
+.inputFld{
+    width: 42.0rem;
+height: 5.0rem;
+border: 1px;
+border: 1px solid #CCCCCC;
+background-color: #FFFFFF;
+outline: none;
+text-indent: 1.0rem;
+}
+.errMsg{
+    color: red;
+    font-size: 1.5rem;
+}
+.formBx{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.login_formBx input::placeholder{
+    font-family: Poppins;
+font-size: 1.6rem;
+font-weight: 400;
+line-height: 2.4rem;
+letter-spacing: 0em;
+text-align: left;
+color: #CCCCCC;
+
+}
+
+.login_signBtn{
+    width: 150px;
+height: 50px;
+background: #274082;
+font-family: Poppins;
+font-size: 1.6rem;
+font-weight: 600;
+line-height: 2.4rem;
+letter-spacing: 0.1em;
+text-align: center;
+cursor: pointer;
+border: 1px solid #274082;
+color: #FFFFFF;
+  margin: auto;
+
+}
+
+.login_formBx p{
+    font-family: Poppins;
+font-size: 1.6rem;
+font-weight: 600;
+line-height: 2.4rem;
+letter-spacing: 0em;
+text-align: center;
+color: #ED1B24;
+cursor: pointer;
+}

@@ -1,0 +1,25 @@
+.singin_btn{
+    width: 15.5rem;
+height: 5.5rem;
+background: #ED1B24;
+border: 1px solid #ED1B24;
+
+font-family: Poppins;
+font-size: 1.6rem;
+font-weight: 600;
+line-height: 2.4rem;
+letter-spacing: 0.1em;
+text-align: center;
+color: #FFFFFF;
+cursor: pointer;
+margin-right: 2rem;
+
+
+}
+.singin_btn:hover{
+background: white;
+
+color:#ED1B24;
+
+
+}
