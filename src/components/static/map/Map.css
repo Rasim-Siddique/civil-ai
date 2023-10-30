@@ -83,14 +83,17 @@
 /* new figma  */
   .container_imgmp{
  /* border: 2px solid red; */
-padding: 2% 10% 2% 10% ;
+/* padding: 2% 10% 2% 10% ; */
 width: 100%;
 /* height: 100vh; */
 background-color: #FFFFFF;
   }
 
+  .img_conatainerMp{
+    width: 100%;
+  }
   .container_imgmp .img_conatainerMp img{
-      height:100vh;
+      /* height:100vh; */
       width: 100%;
       /* border-bottom: 2px solid red; */
       

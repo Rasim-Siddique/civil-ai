@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
-import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
-import { canvasPreview } from './canvasPreview'
-import './Map.css';
+import ReactCrop, { Crop, convertToPixelCrop } from 'react-image-crop';
+import { canvasPreview } from './canvasPreview';
 
 import 'react-image-crop/dist/ReactCrop.css';
 
@@ -381,7 +380,7 @@ const jsonObject = {
 const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 
-export default function MapCom() {
+export default function MapPage() {
   const [imgSrc, setImgSrc] = useState('');
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -476,7 +475,7 @@ export default function MapCom() {
         imgRef.current,
         previewCanvasRef.current,
         completedCrop,
-        scale,Steel in beam, column
+        scale,
         rotate
       );
     }
@@ -511,7 +510,7 @@ export default function MapCom() {
 
   const handleCount = (e: any, id: any) => {
     console.log(matchingElement);
-    const updatedMatchingElement = matchingElement.map(([value, count]:any, index:any) => {
+    const updatedMatchingElement = matchingElement.map(([value, count], index) => {
       if (id === index) {
         return [value, parseInt(e.target.value, 10)];
       }
@@ -575,7 +574,11 @@ export default function MapCom() {
   console.log("Total Cubic Feet:", totalCubicFeet);
 
 
-
+  const findConcreate = () => {
+    //  now find price of 1 cubic feet concrete
+    // let priceOfCubicFeet:any='';
+    // priceOfCubicFeet=(2a+8b+16c)/50`
+  }
 
 
   return (
@@ -687,7 +690,7 @@ export default function MapCom() {
                       Matching Elements and Quantities
                     </h2>
                     {matchingElement?.map(
-                      ([value, count]:any, id: any) => (
+                      ([value, count], id: any) => (
                         <div key={value} style={{ display: "flex", gap: 10, margin: 20 }}>
                           <span style={{ fontWeight: 'bold', marginTop: 10 }}>
                             {value}:
