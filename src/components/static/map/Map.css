@@ -80,3 +80,95 @@
   border-radius: 20px;
   cursor: pointer;
   }
+/* new figma  */
+  .container_imgmp{
+ /* border: 2px solid red; */
+padding: 2% 10% 2% 10% ;
+width: 100%;
+/* height: 100vh; */
+background-color: #FFFFFF;
+  }
+
+  .container_imgmp .img_conatainerMp img{
+      height:100vh;
+      width: 100%;
+      /* border-bottom: 2px solid red; */
+      
+  }
+  .img_conatainerFoot{
+    border-top: 2px solid rgb(233, 226, 226);
+    /* height: 20vh; */
+    width: 100%;
+
+  }
+
+  .img_conatainerFoot{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn_container{
+    padding-top: 5px;
+    display: flex;
+align-items: center;
+    gap: 20px;
+  }
+  .plus_icn{
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-right: 2px solid #e6e5e5;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    cursor: pointer;
+
+  }
+  .minus_icn{
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-right: 2px solid #e6e5e5;
+    border-left: 2px solid #e6e5e5;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    cursor: pointer;
+
+  }
+  .reset_btn{
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-right: 1px solid #FFFFFF;
+    border-left: 2px solid #e6e5e5;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    cursor: pointer;
+    color: red;
+    font-size: 16px;
+  }
+  .zoom_perc{
+    font-family: Poppins;
+font-size: 16px;
+font-weight: 600;
+line-height: 24px;
+letter-spacing: 0em;
+text-align: center;
+color: black;
+
+  }
+
+  .processMapCont{
+    padding-top:50px;
+    padding-bottom:50px;
+
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .processMap{
+    width: 445px;
+    height: 55px;
+background-color: #274082;    
+color: white;
+cursor: pointer;
+border: 1px solid #274082;
+  }
