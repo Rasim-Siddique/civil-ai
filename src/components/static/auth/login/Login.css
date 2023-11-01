@@ -48,6 +48,7 @@ border: 1px solid #CCCCCC;
 background-color: #FFFFFF;
 outline: none;
 text-indent: 1.0rem;
+font-size: 1.6rem;
 }
 .errMsg{
     color: red;

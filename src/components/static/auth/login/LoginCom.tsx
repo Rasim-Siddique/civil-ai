@@ -5,8 +5,24 @@ import formData from '../../../data/form-data.json';
 import './Login.css';
 import FormikControl from "../../../dynamic/formdynamic/FormikControl";
 import DynamicBtn from "../../../dynamic/button/Button";
-const LoginCom=()=>{
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../../firebase-config";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
+const LoginCom=()=>{
+  const navigate=useNavigate()
+
+
+  onAuthStateChanged(auth, (currentUser:any)=>{
+    if (currentUser) {
+      // User is logged in
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+  } else {
+      // User is logged out
+      localStorage.removeItem('currentUser');
+  }
+})
   const formDataMap = formData?.filter((val: any, index:number) => {
 
     return (index==0 || index==2)
@@ -29,12 +45,31 @@ const validationSchema = Yup.object({
   password: Yup.string().required("password is required"),
 });
 
-const onSubmit = (values: any) => {
-  console.log("Form data by dynaic names", values);
+const onSubmit = async (values: any) => {
+  try{
+      const user=await signInWithEmailAndPassword(
+          auth,
+          values.email,
+          values.password
+      )
+      console.log(user)
+if(user){
+  toast("You Have Signed in Successfully")
+  setTimeout(()=>{
+    navigate('/');
+
+  },2000)
+  // window.location.reload(false)
+}
+  }catch(error:any){
+      console.log(error.message)
+  }
 };
 
     return(
         <>
+         <ToastContainer />
+
             <div className="main_login_sec">
                 <div className='login_formBx'>
                     <img src="/login-logo.svg" alt="login-img" />  
