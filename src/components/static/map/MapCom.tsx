@@ -1,6 +1,8 @@
 import DynamicBtn from '../../dynamic/button/Button';
 import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
 
+import { Button, Form, Table } from 'react-bootstrap';
+
 import './Map.css';
 
 import 'react-image-crop/dist/ReactCrop.css';
@@ -589,11 +591,21 @@ const MapCom = () => {
     return (
         <>
          <div className='input_fldsBox'>
-          <input type="number" placeholder='price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
-          <input type="number" placeholder='price of one bag of crush' onChange={handleCement} value={cementValue} />
-          <input type="number" placeholder='price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
-          <input type="number" placeholder='rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
-
+         <Form className='form_fields'>
+      <Form.Group  controlId="exampleForm.ControlInput1">
+        <Form.Control type="number" placeholder='price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
+      </Form.Group>
+      <Form.Group  controlId="exampleForm.ControlInput1">
+        <Form.Control  type="number" placeholder='price of one bag of crush' onChange={handleCement} value={cementValue} />
+      </Form.Group>
+      <Form.Group  controlId="exampleForm.ControlInput1">
+        <Form.Control  type="number" placeholder='price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
+      </Form.Group>
+      <Form.Group  controlId="exampleForm.ControlInput1">
+        <Form.Control  type="number" placeholder='rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
+      </Form.Group>
+       
+ </Form>
 
         </div>
 <br />
@@ -678,8 +690,8 @@ const MapCom = () => {
                     </h2>
                     {matchingElement?.map(
                       ([value, count]:any, id: any) => (
-                        <div key={value} style={{ display: "flex", gap: 10, margin: 20 }}>
-                          <span style={{ fontWeight: 'bold', marginTop: 10 }}>
+                        <div key={value} style={{ display: "flex", gap: 40, margin: 20 }}>
+                          <span className='pointName' style={{ fontWeight: 'bold', marginTop: 10 }}>
                             {value}:
                           </span>
 
@@ -690,10 +702,11 @@ const MapCom = () => {
 
 
 
-                          <span style={{ fontWeight: "bold", }}>
+                          <span className='pointName2' style={{ fontWeight: "bold" }}>
                             Total cubic feet:
 
                             <input
+                            style={{marginLeft:20}}
                               type="number"
                               className='count_input'
                               value={value === 'c1' ? count * 1.5 :
@@ -714,9 +727,11 @@ const MapCom = () => {
 
 
 
-                          <span style={{ fontWeight: "bold" }}>Total concrete Price for cubic feet: D =
+                          <span className='pointName2' style={{ fontWeight: "bold" }}>Total concrete Price for cubic feet: D =
 
                             <input
+                                                        style={{marginLeft:20}}
+
                               type="number"
                               className='count_input'
 
@@ -745,328 +760,333 @@ const MapCom = () => {
 
 
                 {matchingElement &&
-                  <table border={2}>
 
-                    <tr>
-                      <th>
-                        S.No
-                      </th>
-                      <th>
-                        Name of Item
-                      </th>
-                      <th>
-                        Quantity
-                      </th>
+<div className='table_boot'>
+<Table   striped bordered hover variant="dark">
+<thead>
+<tr>
+                       <th>
+                         S.No
+                       </th>
+                       <th>
+                         Name of Item
+                       </th>
+                       <th>
+                         Quantity
+                       </th>
 
-                      <th>
-                        Unit
-                      </th>
+                       <th>
+                         Unit
+                       </th>
 
-                      <th>
-                        rate
-                      </th>
-                      <th>
-                        per
-                      </th>
+                       <th>
+                         rate
+                       </th>
+                       <th>
+                         per
+                       </th>
 
-                      <th>
-                        Amount (RS)
-                      </th>
+                       <th>
+                         Amount (RS)
+                       </th>
 
 
 
-                    </tr>
+                     </tr>
+</thead>
+<tbody>
+                     <tr>
+                       <td>1</td>
+                       <td>Excavation
 
-                    <tr>
-                      <td>1</td>
-                      <td>Excavation
+                       </td>
 
-                      </td>
+                       <td>
 
-                      <td>
+                         {totalCubicFeet}
 
-                        {totalCubicFeet}
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>
 
-                      </td>
-                      <td>
+                         {labourPer}
 
-                        {labourPer}
+                       </td>
+                       <td>Per Cubic Feet
 
-                      </td>
-                      <td>Per Cubic Feet
+                       </td>
 
-                      </td>
+                       <td>
+                         {totalCubicFeet * labourPer}
 
-                      <td>
-                        {totalCubicFeet * labourPer}
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
+                     <tr>
+                       <td>2</td>
+                       <td>P.P.C. Work(M-15)
 
-                    <tr>
-                      <td>2</td>
-                      <td>P.P.C. Work(M-15)
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
 
+                     <tr>
+                       <td>3</td>
+                       <td>Footing Concrete(M-25)
 
-                    <tr>
-                      <td>3</td>
-                      <td>Footing Concrete(M-25)
+                       </td>
 
-                      </td>
+                       <td>
 
-                      <td>
+                         {totalCubicFeet}
 
-                        {totalCubicFeet}
 
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>
 
-                      </td>
-                      <td>
+                       {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)}
 
-                      {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)}
 
+                       </td>
+                       <td>
 
-                      </td>
-                      <td>
+ Per Cubic Feet
+                       </td>
 
-Per Cubic Feet
-                      </td>
+                       <td>
 
-                      <td>
+                         {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)* totalCubicFeet}
 
-                        {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)* totalCubicFeet}
+                       </td>
 
-                      </td>
 
 
+                     </tr>
+                     <tr>
+                       <td>4</td>
+                       <td>Steel Quantity in Footing
 
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Steel Quantity in Footing
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>kg
 
-                      </td>
-                      <td>kg
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
+                     <tr>
+                       <td>5</td>
+                       <td>DPC Work at plinth (M-20)
 
-                    <tr>
-                      <td>5</td>
-                      <td>DPC Work at plinth (M-20)
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>
+                         not available
 
-                      </td>
-                      <td>
-                        not available
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
+                     <tr>
+                       <td>6</td>
+                       <td>Plinth beam concrete
 
-                    <tr>
-                      <td>6</td>
-                      <td>Plinth beam concrete
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>
+                       not available
 
-                      </td>
-                      <td>
-                      not available
 
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
+                     <tr>
+                       <td>7</td>
+                       <td>Brickwork in superstructure
 
-                    <tr>
-                      <td>7</td>
-                      <td>Brickwork in superstructure
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
 
+                     <tr>
+                       <td>8</td>
+                       <td>Concrete in beams column (M 25)
 
-                    <tr>
-                      <td>8</td>
-                      <td>Concrete in beams column (M 25)
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
 
+                     <tr>
+                       <td>9</td>
+                       <td>Steel in beam, column
 
-                    <tr>
-                      <td>9</td>
-                      <td>Steel in beam, column
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
+                     <tr>
+                       <td>10</td>
+                       <td>Plaster work
 
-                    <tr>
-                      <td>10</td>
-                      <td>Plaster work
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
+                       <td>cubic feet
 
-                      </td>
-                      <td>cubic feet
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
+                       <td>1
 
-                      </td>
-                      <td>1
+                       </td>
 
-                      </td>
+                       <td>1
 
-                      <td>1
+                       </td>
 
-                      </td>
 
 
+                     </tr>
 
-                    </tr>
-
-                  </table>
+</tbody>
+</Table>
+</div>  
                 }
 
 
