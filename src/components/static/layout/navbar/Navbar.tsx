@@ -38,17 +38,19 @@ const currentUser = storedUser ? JSON.parse(storedUser) : null;
     
                     </>
                 ):
+                <>
                 <DynamicBtn  textBtn="Logout" btnFunc={SingOutBtn} />
+                <img src="profile.svg" alt="profile-civil" />
+                <p>{currentUser?.email}</p>
+                <img className="arrowLast" src="arrowdown.svg" alt="arr-civil" /> 
+                 {/* <button>FeedBack</button>  */}
 
-                
+                </>
                 }
                 
 
-                 {/* <button>FeedBack</button>  */}
 
-                 <img src="profile.svg" alt="profile-civil" />
-                <p>{currentUser?.email}</p>
-                <img src="arrowdown.svg" alt="arr-civil" /> 
+                
 
                </div>
          </section>

@@ -22,7 +22,7 @@
     justify-content: space-between;
 }
 .login_formBx h1{
-    font-family: Fjalla One;
+    font-family: 'Fjalla One';
 font-size: 2.4rem;
 font-weight: 400;
 line-height: 3.0rem;
@@ -86,6 +86,17 @@ color: #FFFFFF;
   margin: auto;
 
 }
+
+.login_signBtn:hover{
+    background: white;
+
+    color:#274082;
+
+}
+
+
+
+
 
 .login_formBx p{
     font-family: Poppins;

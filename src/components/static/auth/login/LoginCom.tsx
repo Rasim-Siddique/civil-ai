@@ -62,13 +62,15 @@ if(user){
   // window.location.reload(false)
 }
   }catch(error:any){
+  toast("Somehting went wrong")
+
       console.log(error.message)
   }
 };
 
     return(
         <>
-         <ToastContainer />
+         <ToastContainer style={{fontSize:16}} />
 
             <div className="main_login_sec">
                 <div className='login_formBx'>

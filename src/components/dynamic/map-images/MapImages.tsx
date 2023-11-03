@@ -4,7 +4,7 @@ import './MapImages.css';
 const mapData =[
     {imgSrc:"map-lit-img.svg", textImg:"Map 1", status:'inactive'},
     {imgSrc:"Group 6.svg", textImg:"Map 2", status:'inactive'},
-    {imgSrc:"Group 7.svg", textImg:"Map 3", status:'inactive'},
+    {imgSrc:"mapsecond.jpeg", textImg:"Map 3", status:'inactive'},
     {imgSrc:"Group 9.svg", textImg:"Map 4", status:'inactive'},
     {imgSrc:"Group 10.svg", textImg:"Map 5", status:'inactive'},
     {imgSrc:"Group 11.svg", textImg:"Map 6", status:'inactive'},
@@ -19,6 +19,7 @@ const [imgValue, setImgValue]=useState("")
 
 
 const getImg=(imgVal:string)=>{
+    localStorage.setItem('imgValue', imgVal);
    setImgValue(imgVal)
 setAllMapData((mapData:any)=>{
 const data=mapData?.map((values:any)=>{
@@ -46,8 +47,8 @@ console.log("imgValue:::", allMapData)
         {allMapData && allMapData?.map((mapValues:any)=>{
             return(
                 <>
-                  <div  className="img_sec" onClick={()=>{getImg(mapValues.imgSrc)}}>
-            <img style={{border:mapValues.status==='active'?"2px solid black":"", opacity:mapValues.status==='active'?"0.8":""}}  src={mapValues?.imgSrc} alt={mapValues?.textImg} />
+                  <div style={{border:mapValues.status==='active'?"1px solid gray":"", opacity:mapValues.status==='active'?"0.9":"",  boxShadow:mapValues.status==='active'?"5px 5px 15px gray":""}} className="img_sec" onClick={()=>{getImg(mapValues.imgSrc)}}>
+            <img   src={mapValues?.imgSrc} alt={mapValues?.textImg} style={{width:"400px", height:'300px'}} />
             <p>{mapValues?.textImg}</p>
         </div>
                 </>

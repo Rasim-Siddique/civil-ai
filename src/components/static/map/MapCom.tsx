@@ -8,6 +8,7 @@ import './Map.css';
 import 'react-image-crop/dist/ReactCrop.css';
 import { useRef, useState } from 'react';
 import { canvasPreview } from './canvasPreview';
+import { useLocation } from 'react-router-dom';
 
 const jsonObject = {
   "objects": [
@@ -385,6 +386,9 @@ const jsonObject = {
 const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
+  const location=useLocation();
+  const {pathname}=location
+  const imgGet=localStorage.getItem('imgValue');
     const [imgSrc, setImgSrc] = useState('');
     const [coordinates, setCoordinates] = useState('');
     
@@ -537,7 +541,7 @@ const MapCom = () => {
       })
   
       const total = totalCubicFeet && totalCubicFeet.reduce((acc: any, value: any) => acc + value, 0);
-  
+    
       return total;
   
     }
@@ -593,16 +597,16 @@ const MapCom = () => {
          <div className='input_fldsBox'>
          <Form className='form_fields'>
       <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" placeholder='price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
+        <Form.Control type="number" placeholder='Price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
       </Form.Group>
       <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='price of one bag of crush' onChange={handleCement} value={cementValue} />
+        <Form.Control  type="number" placeholder='Price of one bag of crush' onChange={handleCement} value={cementValue} />
       </Form.Group>
       <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
+        <Form.Control  type="number" placeholder='Price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
       </Form.Group>
       <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
+        <Form.Control  type="number" placeholder='Rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
       </Form.Group>
        
  </Form>
@@ -621,10 +625,9 @@ const MapCom = () => {
           >
             <img
               alt="Crop me"
-              src='j2.jpg'
+              src={imgGet}
               style={{
                 maxWidth: '100%',
-                maxHeight: '100%',
               }}
               onLoad={onImageLoad}
             />
@@ -762,9 +765,9 @@ const MapCom = () => {
                 {matchingElement &&
 
 <div className='table_boot'>
-<Table   striped bordered hover variant="dark">
-<thead>
-<tr>
+<Table    striped  hover variant="light">
+<thead >
+<tr >
                        <th>
                          S.No
                        </th>

@@ -46,19 +46,21 @@
   }
   .input_fldsBox input{
     width: 30.0rem;
-    height: 4.0rem;
+    height: 6.0rem;
     text-indent: 2.0rem;
+    font-size: 1.8rem;
   }
 
   .count_input
   {
 
-
-  width: 5.0rem;
+  width: 8.0rem;
 height: 5.0rem;
 border: 1px solid #CCCCCC;
 outline: none;
 text-align: center;
+font-size: 1.5rem;
+text-indent: 10px;
   }
 
 
@@ -95,6 +97,8 @@ background-color: #FFFFFF;
 
   .img_conatainerMp{
     width: 100%;
+    display: flex;
+    justify-content: center ;
   }
   .container_imgmp .img_conatainerMp img{
       /* height:100vh; */
@@ -105,7 +109,7 @@ background-color: #FFFFFF;
   .img_conatainerFoot{
     border-top: 2px solid rgb(233, 226, 226);
     /* height: 20vh; */
-    width: 100%;
+    width: 1
 
   }
 
@@ -115,6 +119,7 @@ background-color: #FFFFFF;
     align-items: center;
   }
   .btn_container{
+    padding-left: 5rem;
     padding-top: 5px;
     display: flex;
 align-items: center;
@@ -141,6 +146,7 @@ align-items: center;
 
   }
   .reset_btn{
+    margin-right: 5rem;
     background-color: #FFFFFF;
     padding: 1.0rem;
     border-right: 1px solid #FFFFFF;
@@ -152,13 +158,15 @@ align-items: center;
     font-size: 1.6rem;
   }
   .zoom_perc{
-    font-family: Poppins;
+    font-family: 'Poppins';
 font-size: 1.6rem;
 font-weight: 600;
 line-height: 2.4rem;
 letter-spacing: 0em;
 text-align: center;
 color: black;
+padding-top: 10px;
+/* align-items: center; */
 
   }
 
@@ -178,12 +186,18 @@ background-color: #274082;
 color: white;
 cursor: pointer;
 border: 1px solid #274082;
+font-size: 1.5rem;
+  }
+
+  .processMap:hover{
+background-color:#FFFFFF;    
+color: #274082;
   }
 
 
   .form_fields{
     display: flex;
-    gap: 20px;
+    gap: 2rem;
   }
 
 
@@ -191,26 +205,27 @@ border: 1px solid #274082;
     font-size: 1.3rem;
   }
   .pointName{
-    width: 2.8rem;
+    width: 3.2rem;
 height: 3.0rem;
-font-family: Fjalla One;
+font-family: 'Poppins';
 font-size: 2.4rem;
 font-weight: 400;
 line-height: 3.0rem;
 letter-spacing: 0em;
 text-align: left;
-color: #000000;
+color: #FF6813;
 
   }
 
   .pointName2{
-    font-family: Fjalla One;
+    font-family: "Poppins";
     font-size: 1.7rem;
     font-weight: 400;
     line-height: 3.0rem;
     letter-spacing: 0em;
     text-align: left;
-    color: #000000;
+  
+
   }
 
   .table_boot{
@@ -226,3 +241,8 @@ color: #000000;
 
   }
 
+
+
+  .table_boot th{
+    padding:10;
+  }

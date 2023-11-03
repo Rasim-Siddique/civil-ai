@@ -14,12 +14,7 @@ import { useNavigate } from "react-router-dom";
 const SingUpCom = () => {
 
     const navigate=useNavigate()
-    // const [userData,setUserData]=useState({})
-
-
-    // onAuthStateChanged(auth, (currentUser)=>{
-    //     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    // })
+   
 
     const formDataMap = formData?.filter((val: any, index: number) => {
 
@@ -73,7 +68,7 @@ const SingUpCom = () => {
 
     return (   
         <>
-         <ToastContainer />
+         <ToastContainer  style={{fontSize:16}} />
             <div className="main_login_sec" >
                 <div className='login_formBx' >
                     <img src="/login-logo.svg" alt="login-img" />

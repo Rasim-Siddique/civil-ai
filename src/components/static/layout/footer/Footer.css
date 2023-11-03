@@ -14,3 +14,62 @@
     display: flex;
     align-items: center;
 }
+
+.footsectionLogin{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #274082;
+   
+}
+
+.footsectionLogin p{
+    font-family: 'Poppins';
+font-size: 1.6rem;
+font-weight: 400;
+line-height: 2.4rem;
+letter-spacing: 0em;
+text-align: left;
+color: #FFFFFF;
+padding-top: 10px;
+}
+
+
+/* modal code  */
+
+
+.main_modalBx{
+    padding: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.main_modalBx h1{
+    font-family: "Fjalla One";
+    font-size: 2.4rem;
+    font-weight: 400;
+    line-height: 3.0rem;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #000000;
+
+    
+}
+
+.text_areaBx{
+    width: 100%;
+}
+
+.textLableArea{
+    font-family: 'Poppins';
+    font-size: 1.5ren;
+    font-weight: 600;
+    line-height: 2.3rem;
+    letter-spacing: 0em;
+    text-align: left;
+ color: #000000;      
+}

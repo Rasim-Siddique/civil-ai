@@ -1,6 +1,7 @@
 .topRegSec{
     display: flex;
     justify-content: space-between;
+    margin-bottom: 5rem;
 }
 .topRegSec h1{
     font-family: Fjalla One;
@@ -19,7 +20,9 @@
 height: 5.0rem;
 background-color: #FFFFFF;
 outline: none;
-border: 1px solid #FFFFFF;
+font-size: 1.6rem;
+border: 1px solid #8c8c8c;
+cursor: pointer;
 }
 
 

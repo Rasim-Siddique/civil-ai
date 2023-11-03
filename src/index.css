@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-family:"Fjalla One", sans-serif; */
+
 }
 
 
@@ -9,6 +14,7 @@
 body{
   background-color: 
   #F5F5F5;
+    /* font-family:"FjallaOne", sans-serif; */
 }
 
 html{

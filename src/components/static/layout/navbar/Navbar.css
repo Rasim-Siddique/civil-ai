@@ -1,7 +1,7 @@
 section{
     width: 100%;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 2.0rem;
+    padding-bottom: 2.0rem;
     background-color: 
     #FFFFFF;
     padding-left: 10%;
@@ -48,7 +48,7 @@ font-weight: 400;
 line-height: 2.0rem;
 letter-spacing: 0em;
 cursor: pointer;
-
+margin-top: 10px;
 }
 
 .Profile_btn_sec img{
@@ -57,6 +57,10 @@ cursor: pointer;
 
 
 
+.arrowLast{
+    display: flex;
+align-items: center;
+}
 
 
   
