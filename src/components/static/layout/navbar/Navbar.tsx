@@ -3,12 +3,12 @@ import DynamicBtn from "../../../dynamic/button/Button";
 import "./Navbar.css";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
+import { useAuth } from "../../../../hooks/useAuth";
 // import { auth } from "../../../../firebase-config";
 
 const Navbar=()=>{
-    const storedUser = localStorage.getItem('currentUser');
+    const {currentUser}=useAuth()
 
-const currentUser = storedUser ? JSON.parse(storedUser) : null;
     const navigate=useNavigate()
     const loginBtn=()=>{
         navigate('/login')

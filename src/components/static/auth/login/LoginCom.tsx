@@ -5,7 +5,7 @@ import formData from '../../../data/form-data.json';
 import './Login.css';
 import FormikControl from "../../../dynamic/formdynamic/FormikControl";
 import DynamicBtn from "../../../dynamic/button/Button";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,15 +14,7 @@ const LoginCom=()=>{
   const navigate=useNavigate()
 
 
-  onAuthStateChanged(auth, (currentUser:any)=>{
-    if (currentUser) {
-      // User is logged in
-      localStorage.setItem('currentUser', JSON.stringify(currentUser));
-  } else {
-      // User is logged out
-      localStorage.removeItem('currentUser');
-  }
-})
+
   const formDataMap = formData?.filter((val: any, index:number) => {
 
     return (index==0 || index==2)

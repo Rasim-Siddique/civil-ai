@@ -1,14 +1,13 @@
 import DynamicBtn from '../../dynamic/button/Button';
 import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
 
-import { Button, Form, Table } from 'react-bootstrap';
+import {Form, Table } from 'react-bootstrap';
 
 import './Map.css';
 
 import 'react-image-crop/dist/ReactCrop.css';
 import { useRef, useState } from 'react';
 import { canvasPreview } from './canvasPreview';
-import { useLocation } from 'react-router-dom';
 
 const jsonObject = {
   "objects": [
@@ -386,8 +385,6 @@ const jsonObject = {
 const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
-  const location=useLocation();
-  const {pathname}=location
   const imgGet=localStorage.getItem('imgValue');
     const [imgSrc, setImgSrc] = useState('');
     const [coordinates, setCoordinates] = useState('');
@@ -404,24 +401,23 @@ const MapCom = () => {
     const [crush2Value, setCrush2Value] = useState<any>("");
     const [labourPer, setLabourPer] = useState<any>("");
   
-    const [countValue, setCountValue] = useState<any>("");
     const [isCroppingEnabled, setIsCroppingEnabled] = useState(false);
   
   
   
   
   
-    const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files && e.target.files.length > 0) {
-        setCrop(undefined);
-        setScale(1);
-        const reader = new FileReader();
-        reader.addEventListener('load', () =>
-          setImgSrc(reader.result?.toString() || '')
-        );
-        reader.readAsDataURL(e.target.files[0]);
-      }
-    };
+    // const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //   if (e.target.files && e.target.files.length > 0) {
+    //     setCrop(undefined);
+    //     setScale(1);
+    //     const reader = new FileReader();
+    //     reader.addEventListener('load', () =>
+    //       setImgSrc(reader.result?.toString() || '')
+    //     );
+    //     reader.readAsDataURL(e.target.files[0]);
+    //   }
+    // };
   
     const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
       if (completedCrop) {
@@ -439,33 +435,33 @@ const MapCom = () => {
   
   
   
-    const showImg = () => {
-      if (
-        completedCrop?.width &&
-        completedCrop?.height &&
-        imgRef.current &&
-        previewCanvasRef.current
-      ) {
-        canvasPreview(
-          imgRef.current,
-          previewCanvasRef.current,
-          completedCrop,
-          scale,
-          rotate
-        );
-      }
-    };
+    // const showImg = () => {
+    //   if (
+    //     completedCrop?.width &&
+    //     completedCrop?.height &&
+    //     imgRef.current &&
+    //     previewCanvasRef.current
+    //   ) {
+    //     canvasPreview(
+    //       imgRef.current,
+    //       previewCanvasRef.current,
+    //       completedCrop,
+    //       scale,
+    //       rotate
+    //     );
+    //   }
+    // };
   
-    const handleZoomIn = () => {
-      setScale(scale + 0.1);
-    };
+    // const handleZoomIn = () => {
+    //   setScale(scale + 0.1);
+    // };
   
-    const handleZoomOut = () => {
+    // const handleZoomOut = () => {
   
-      if (scale > 0.1) {
-        setScale(scale - 0.1);
-      }
-    };
+    //   if (scale > 0.1) {
+    //     setScale(scale - 0.1);
+    //   }
+    // };
   
   
     const handleCrush = (e: any) => {

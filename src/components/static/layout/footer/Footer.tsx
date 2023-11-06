@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useAuth } from "../../../../hooks/useAuth";
 
 function MyVerticallyCenteredModal(props:any) {
 
@@ -44,11 +45,11 @@ function MyVerticallyCenteredModal(props:any) {
 const Footer=()=>{
     const location=useLocation()
     const {pathname}=location
-    const storedUser = localStorage.getItem('currentUser');
+    const {currentUser}=useAuth()
+
     const [modalShow, setModalShow] = useState(false);
 
 
-    const currentUser = storedUser ? JSON.parse(storedUser) : null;
     const navigate=useNavigate();
     const goToMap=()=>{
         navigate(currentUser?"/map-page":'/login')
