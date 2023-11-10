@@ -6,8 +6,8 @@ import {Form, Table } from 'react-bootstrap';
 import './Map.css';
 
 import 'react-image-crop/dist/ReactCrop.css';
-import { useRef, useState } from 'react';
-import { canvasPreview } from './canvasPreview';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const jsonObject = {
   "objects": [
@@ -385,12 +385,10 @@ const jsonObject = {
 const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
+  const navigate=useNavigate()
   const imgGet=localStorage.getItem('imgValue');
-    const [imgSrc, setImgSrc] = useState('');
     const [coordinates, setCoordinates] = useState('');
     
-    const previewCanvasRef = useRef<HTMLCanvasElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null);
     const [crop, setCrop] = useState<any>();
     const [completedCrop, setCompletedCrop] = useState<any>(null);
     const [scale, setScale] = useState(1);
@@ -405,6 +403,7 @@ const MapCom = () => {
   
   
   
+   
   
   
     // const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -586,6 +585,18 @@ const MapCom = () => {
           setMatchingElement(null);
         }
     }
+
+    const generateBqq = () => {
+      const queryParams:any = new URLSearchParams();
+      queryParams.append('totalCubicFeet',totalCubicFeet);
+      queryParams.append('labourPer', labourPer);
+      queryParams.append('cubic-Feet',  (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50));
+
+     
+
+      navigate(`/map-details?${queryParams.toString()}`);
+    };
+    
   
   
     return (
@@ -756,7 +767,9 @@ const MapCom = () => {
                   </div>
                 )}
 
-
+<div className='processMapCont'>
+                <DynamicBtn textBtn='Generate BQQ' classBtn='processMap' btnFunc={generateBqq} />
+            </div>
 
                 {matchingElement &&
 

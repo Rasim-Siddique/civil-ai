@@ -5,6 +5,7 @@ import Footer from "./components/static/layout/footer/Footer"
 import MapDetails from "./pages/map-page/MapDetails"
 import Login from "./pages/auth/login/Login"
 import Register from "./pages/auth/signup/Register"
+import MapBqq from "./pages/map-details/MapBqq"
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
       <Routes>
         <Route path="/" element={ <Home/> } />
         <Route path="/map-page" element={ <MapDetails/> } />
+        <Route path="/map-details" element={ <MapBqq/> } />
+
         <Route path="/login" element={ <Login/> } />
         <Route path="/register" element={ <Register/> } />
 
