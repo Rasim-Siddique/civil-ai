@@ -7,14 +7,17 @@ const MapBqq=()=>{
     const searchParams = new URLSearchParams(location.search);
   
     // Access query parameters
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const totalCubicFeet:any = searchParams.get('totalCubicFeet');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const labourPer:any = searchParams.get('labourPer');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const cubicFeet:any = searchParams.get('cubic-Feet');
 
     return(
         <>
      
-<div className='table_boot'>
+<div className='table_boot' style={{margin:'auto', paddingTop:100}}>
 <Table    striped  hover variant="light">
 <thead >
 <tr >
