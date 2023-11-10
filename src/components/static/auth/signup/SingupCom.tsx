@@ -15,16 +15,16 @@ const SingUpCom = () => {
 
     const navigate=useNavigate()
    
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const formDataMap = formData?.filter((val: any, index: number) => {
-
+console.log(val)
         return (index == 0 || index == 2 )
     }).map((values) => {
         return values?.name
     })
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const initialValues: any = {};
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     formDataMap.forEach((key: any) => {
         return (initialValues[key] = "");
     });
@@ -40,7 +40,7 @@ const SingUpCom = () => {
 
  
     });
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onSubmit = async  (values: any) => {
         console.log("Form data by dynaic names", values);
         try{
@@ -58,7 +58,7 @@ const SingUpCom = () => {
 
                 },2000)
             }
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }catch(error:any){
             toast("Something Went Wrong")
 
@@ -79,7 +79,7 @@ const SingUpCom = () => {
                             validationSchema={validationSchema}
                             onSubmit={onSubmit}
                         >
-                            {(formik) => (
+                            {() => (
                                 <Form
 
                                     className='formBx'

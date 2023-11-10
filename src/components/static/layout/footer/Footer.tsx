@@ -1,12 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./Footer.css";
 
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useAuth } from "../../../../hooks/useAuth";
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function MyVerticallyCenteredModal(props:any) {
 
   

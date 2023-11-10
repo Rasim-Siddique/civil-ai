@@ -14,16 +14,19 @@ const LoginCom=()=>{
   const navigate=useNavigate()
 
 
-
+  
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formDataMap = formData?.filter((val: any, index:number) => {
-
+  console.info(val)
     return (index==0 || index==2)
 }).map((values)=>{
   return values?.name
 })
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const initialValues: any = {};
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 formDataMap.forEach((key: any) => {
   return (initialValues[key] = "");
 });
@@ -36,7 +39,7 @@ const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string().required("password is required"),
 });
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const onSubmit = async (values: any) => {
   try{
       const user=await signInWithEmailAndPassword(
@@ -53,6 +56,7 @@ if(user){
   },2000)
   // window.location.reload(false)
 }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }catch(error:any){
   toast("Somehting went wrong")
 
@@ -74,7 +78,7 @@ if(user){
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          {(formik) => (
+          {() => (
             <Form
 
              className='formBx'

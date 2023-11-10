@@ -18,9 +18,9 @@ const Navbar=()=>{
     }
     const SingOutBtn= async ()=>{
          await signOut(auth)
-         navigate('/login')
-
-         window.location.reload(true)
+         navigate('/login');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+         (window.location.reload as any)(true);
     }  
     return(
         <>

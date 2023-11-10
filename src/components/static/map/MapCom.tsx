@@ -386,23 +386,31 @@ const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
   const navigate=useNavigate()
-  const imgGet=localStorage.getItem('imgValue');
-    const [coordinates, setCoordinates] = useState('');
-    
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+  const imgGet:any=localStorage.getItem('imgValue');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+    const [coordinates, setCoordinates] = useState<any>('');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const [crop, setCrop] = useState<any>();
+// eslint-disable-next-line @typescript-eslint/no-explicit-any     
     const [completedCrop, setCompletedCrop] = useState<any>(null);
-    const [scale, setScale] = useState(1);
-    const [rotate, setRotate] = useState(0);
+    const [scale] = useState(1);
+    const [rotate] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [matchingElement, setMatchingElement] = useState<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [crushValue, setCrushValue] = useState<any>("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [cementValue, setCementValue] = useState<any>("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [crush2Value, setCrush2Value] = useState<any>("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [labourPer, setLabourPer] = useState<any>("");
   
-    const [isCroppingEnabled, setIsCroppingEnabled] = useState(false);
+    const [isCroppingEnabled] = useState(false);
   
   
-  
+  console.log(isCroppingEnabled)
    
   
   
@@ -425,7 +433,7 @@ const MapCom = () => {
         setCrop(pixelCrop);
       }
     };
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const cropCoord = (coord: any) => {
         setCoordinates(coord)
   
@@ -462,24 +470,26 @@ const MapCom = () => {
     //   }
     // };
   
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const handleCrush = (e: any) => {
       setCrushValue(e.target.value)
     }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const handleCement = (e: any) => {
       setCementValue(e.target.value)
     }
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const handleCrush2 = (e: any) => {
       setCrush2Value(e.target.value)
     }
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const handleLaboutPer = (e: any) => {
       setLabourPer(e.target.value)
     }
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
     const handleCount = (e: any, id: any) => {
       console.log(matchingElement);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
       const updatedMatchingElement = matchingElement.map(([value, count]:any, index:any) => {
         if (id === index) {
           return [value, parseInt(e.target.value, 10)];
@@ -496,13 +506,13 @@ const MapCom = () => {
       setCrop(null)
     }
   
-    const toggleCropping = () => {
-      setIsCroppingEnabled((prev) => !prev);
-    };
+    // const toggleCropping = () => {
+    //   setIsCroppingEnabled((prev) => !prev);
+    // };
   
     const findTotalCubicFeet = () => {
-  
-      const totalCubicFeet = matchingElement?.map(([values, quantity]) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+      const totalCubicFeet = matchingElement?.map(([values, quantity]:any) => {
         if (values === 'c1') {
           return quantity * 1.5
         } else if (values === 'c2') {
@@ -534,7 +544,7 @@ const MapCom = () => {
         }
   
       })
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
       const total = totalCubicFeet && totalCubicFeet.reduce((acc: any, value: any) => acc + value, 0);
     
       return total;
@@ -574,9 +584,11 @@ const MapCom = () => {
         });
     
         if (foundElements.length > 0) {
-          const counts = {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+          const counts:any = {};
           foundElements?.forEach((element) => {
-            const { value } = element;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+            const { value }:any = element;
             counts[value] = (counts[value] || 0) + 1;
           });
           const arrGot = Object.entries(counts);
@@ -587,6 +599,7 @@ const MapCom = () => {
     }
 
     const generateBqq = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
       const queryParams:any = new URLSearchParams();
       queryParams.append('totalCubicFeet',totalCubicFeet);
       queryParams.append('labourPer', labourPer);
@@ -699,6 +712,7 @@ const MapCom = () => {
                       Matching Elements and Quantities
                     </h2>
                     {matchingElement?.map(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
                       ([value, count]:any, id: any) => (
                         <div key={value} style={{ display: "flex", gap: 40, margin: 20 }}>
                           <span className='pointName' style={{ fontWeight: 'bold', marginTop: 10 }}>
