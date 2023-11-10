@@ -20,7 +20,7 @@ const Navbar=()=>{
          await signOut(auth)
          navigate('/login');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-         (window.location.reload as any)(true);
+         (window.location.reload as any)();
     }  
     return(
         <>
