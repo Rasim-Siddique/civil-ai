@@ -2,6 +2,9 @@ import DynamicBtn from '../../dynamic/button/Button';
 import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
 
 import {Form, Table } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
+import { ToastContainer, toast } from "react-toastify";
+
 
 import './Map.css';
 
@@ -386,6 +389,8 @@ const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
   const navigate=useNavigate()
+  const [registerLoader, setRegisterLoader]=useState(false)
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
   const imgGet:any=localStorage.getItem('imgValue');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
@@ -556,8 +561,14 @@ const MapCom = () => {
   
 
     const processMapping=()=>{
-      setCompletedCrop(coordinates);
+  setRegisterLoader(true)
+  toast("We have Generated Map Successfully")
+  setTimeout(()=>{
+    setRegisterLoader(false)
 
+
+       setCompletedCrop(coordinates);
+          
         const scaledWidth = Math.floor(coordinates?.width * scale);
         const scaledHeight = Math.floor(coordinates?.height * scale);
     
@@ -596,6 +607,14 @@ const MapCom = () => {
         } else {
           setMatchingElement(null);
         }
+        
+        window.scrollTo({
+          top: window.scrollY + 200,
+          behavior: 'smooth'
+        });
+  },3000)
+      
+
     }
 
     const generateBqq = () => {
@@ -614,6 +633,12 @@ const MapCom = () => {
   
     return (
         <>
+         <ToastContainer style={{fontSize:16}} />
+
+        <div style={{display:'flex', justifyContent:"center"}}>
+        <h1>Unit Rates</h1>
+
+        </div>
          <div className='input_fldsBox'>
          <Form className='form_fields'>
       <Form.Group  controlId="exampleForm.ControlInput1">
@@ -679,7 +704,23 @@ const MapCom = () => {
 
 
             <div className='processMapCont'>
-                <DynamicBtn textBtn='PROCESS MAP' classBtn='processMap' btnFunc={processMapping} />
+                {!registerLoader ?
+                                                   <DynamicBtn textBtn='PROCESS MAP' classBtn='processMap' btnFunc={processMapping} />
+
+                                :
+                                
+                                <Button 
+                                style={{backgroundColor:'white', color:"purple", fontSize:16}}
+                                className='login_signBtn'
+                                disabled>
+      <Spinner 
+      
+      animation="border" size="md" role="status" aria-hidden="true" />
+      <span 
+       
+      className="sr-only">Loading...</span>
+    </Button>
+                                }
             </div>
 
 
@@ -701,7 +742,7 @@ const MapCom = () => {
 
              
                 {!!matchingElement && (
-                  <div>
+                  <div id='points_sec'>
                     <h2
                       style={{
                         marginTop: 50,

@@ -10,10 +10,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import '../login/Login.css'
 import { auth } from "../../../../firebase-config";
 import { useNavigate } from "react-router-dom";
+import { Button, Spinner } from 'react-bootstrap';
+import { useState } from "react";
 
 const SingUpCom = () => {
 
     const navigate=useNavigate()
+    const [registerLoader, setRegisterLoader]=useState(false)
    
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const formDataMap = formData?.filter((val: any, index: number) => {
@@ -42,6 +45,7 @@ console.log(val)
     });
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const onSubmit = async  (values: any) => {
+        setRegisterLoader(true)
         console.log("Form data by dynaic names", values);
         try{
             const userRegister=await createUserWithEmailAndPassword(
@@ -53,13 +57,19 @@ console.log(val)
 
             if(userRegister){
                 toast("You Have Registered Successfully")
-                setTimeout(()=>{
-                    navigate('/login')
 
-                },2000)
+
+                setTimeout(()=>{
+          setRegisterLoader(false)
+
+
+                    navigate('/')
+                },3000)
             }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
         }catch(error:any){
+        setRegisterLoader(false)
+
             toast("Something Went Wrong")
 
             console.log(error.message)
@@ -69,7 +79,9 @@ console.log(val)
     return (   
         <>
          <ToastContainer  style={{fontSize:16}} />
-            <div className="main_login_sec" >
+
+        
+         <div className="main_login_sec" >
                 <div className='login_formBx' >
                     <img src="/login-logo.svg" alt="login-img" />
                     <h1>Welcome Here! Register Now</h1>
@@ -130,7 +142,23 @@ console.log(val)
                                         inputClass={`inputFld`}
                                         errorClass={`errMsg`}
                                     /> */}
-                                    <DynamicBtn btnType='submit' textBtn='Sign Up' classBtn='login_signBtn' />
+                                    {!registerLoader ?
+                                    <DynamicBtn btnType='submit' textBtn="Sign Up" classBtn='login_signBtn' />
+                                :
+                                
+                                <Button 
+                                style={{backgroundColor:'white', color:"purple", fontSize:16}}
+                                className='login_signBtn'
+                                disabled>
+      <Spinner 
+      
+      animation="border" size="md" role="status" aria-hidden="true" />
+      <span 
+       
+      className="sr-only">Loading...</span>
+    </Button>
+                                }
+                                  
 
                                 </Form>
                             )}
@@ -141,7 +169,8 @@ console.log(val)
 
                 </div>
             </div>
-        </>
+         </>
+            
     )
 }
 export default SingUpCom

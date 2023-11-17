@@ -9,9 +9,14 @@ import {  signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../../firebase-config";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { Button, Spinner } from 'react-bootstrap';
+import { useState } from "react";
+
 
 const LoginCom=()=>{
   const navigate=useNavigate()
+  const [registerLoader, setRegisterLoader]=useState(false)
+
 
 
   
@@ -41,6 +46,8 @@ const validationSchema = Yup.object({
 });
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const onSubmit = async (values: any) => {
+  setRegisterLoader(true)
+
   try{
       const user=await signInWithEmailAndPassword(
           auth,
@@ -51,16 +58,19 @@ const onSubmit = async (values: any) => {
 if(user){
   toast("You Have Signed in Successfully")
   setTimeout(()=>{
+    setRegisterLoader(false)
+
     navigate('/');
 
-  },2000)
+  },3000)
   // window.location.reload(false)
 }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }catch(error:any){
+    setRegisterLoader(false)
+
   toast("Somehting went wrong")
 
-      console.log(error.message)
   }
 };
 
@@ -107,7 +117,22 @@ if(user){
                   inputClass={`inputFld`}
                   errorClass={`errMsg`}
                 />
-                                   <DynamicBtn btnType='submit' textBtn='Login' classBtn='login_signBtn' /> 
+                                    {!registerLoader ?
+                                    <DynamicBtn btnType='submit' textBtn="Login" classBtn='login_signBtn' />
+                                :
+                                
+                                <Button 
+                                style={{backgroundColor:'white', color:"purple", fontSize:16}}
+                                className='login_signBtn'
+                                disabled>
+      <Spinner 
+      
+      animation="border" size="md" role="status" aria-hidden="true" />
+      <span 
+       
+      className="sr-only">Loading...</span>
+    </Button>
+                                }
 
             </Form>
           )}

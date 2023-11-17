@@ -1,6 +1,7 @@
 .map_img_sec{
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20rem;
     flex-wrap: wrap;
     margin-top: 5rem;
 }

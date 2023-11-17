@@ -4,11 +4,7 @@ import './MapImages.css';
 const mapData =[
     {imgSrc:"map-lit-img.svg", textImg:"Map 1", status:'inactive'},
     {imgSrc:"Group 6.svg", textImg:"Map 2", status:'inactive'},
-    {imgSrc:"mapsecond.jpeg", textImg:"Map 3", status:'inactive'},
-    {imgSrc:"Group 9.svg", textImg:"Map 4", status:'inactive'},
-    {imgSrc:"Group 10.svg", textImg:"Map 5", status:'inactive'},
-    {imgSrc:"Group 11.svg", textImg:"Map 6", status:'inactive'},
-
+    
 
 
 
