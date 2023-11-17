@@ -715,7 +715,7 @@ const MapCom = () => {
                                 disabled>
       <Spinner 
       
-      animation="border" size="md" role="status" aria-hidden="true" />
+      animation="border" role="status" aria-hidden="true" />
       <span 
        
       className="sr-only">Loading...</span>
