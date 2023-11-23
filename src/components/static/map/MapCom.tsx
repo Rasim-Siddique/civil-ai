@@ -1,7 +1,7 @@
 import DynamicBtn from '../../dynamic/button/Button';
 import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
 
-import {Form, Table } from 'react-bootstrap';
+import { Form, Table } from 'react-bootstrap';
 import { Button, Spinner } from 'react-bootstrap';
 import { ToastContainer, toast } from "react-toastify";
 
@@ -9,8 +9,9 @@ import { ToastContainer, toast } from "react-toastify";
 import './Map.css';
 
 import 'react-image-crop/dist/ReactCrop.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll';
 
 const jsonObject = {
   "objects": [
@@ -388,283 +389,303 @@ const jsonObject = {
 const jsonArray = jsonObject.objects;
 const arrayConvt = jsonArray[0]?.objects;
 const MapCom = () => {
-  const navigate=useNavigate()
-  const [registerLoader, setRegisterLoader]=useState(false)
+  const navigate = useNavigate()
+  const [registerLoader, setRegisterLoader] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-  const imgGet:any=localStorage.getItem('imgValue');
+  const imgGet: any = localStorage.getItem('imgValue');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const [coordinates, setCoordinates] = useState<any>('');
+  const [coordinates, setCoordinates] = useState<any>('');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const [crop, setCrop] = useState<any>();
-// eslint-disable-next-line @typescript-eslint/no-explicit-any     
-    const [completedCrop, setCompletedCrop] = useState<any>(null);
-    const [scale] = useState(1);
-    const [rotate] = useState(0);
+  const [crop, setCrop] = useState<any>();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any     
+  const [completedCrop, setCompletedCrop] = useState<any>(null);
+  const [scale] = useState(1);
+  const [rotate] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [matchingElement, setMatchingElement] = useState<any>(null);
+  const [matchingElement, setMatchingElement] = useState<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [crushValue, setCrushValue] = useState<any>("");
+  const [crushValue, setCrushValue] = useState<any>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [cementValue, setCementValue] = useState<any>("");
+  const [cementValue, setCementValue] = useState<any>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [crush2Value, setCrush2Value] = useState<any>("");
+  const [crush2Value, setCrush2Value] = useState<any>("");
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const [labourPer, setLabourPer] = useState<any>("");
-  
-    const [isCroppingEnabled] = useState(false);
-  
-  
+  const [labourPer, setLabourPer] = useState<any>("");
+
+  const [isCroppingEnabled] = useState(false);
+
+
+ useEffect(()=>{
+  if(matchingElement){
+
+  smoothScrollTo("points_sec");
+}
+
+ },[matchingElement])
+
   console.log(isCroppingEnabled)
-   
-  
-  
-    // const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //   if (e.target.files && e.target.files.length > 0) {
-    //     setCrop(undefined);
-    //     setScale(1);
-    //     const reader = new FileReader();
-    //     reader.addEventListener('load', () =>
-    //       setImgSrc(reader.result?.toString() || '')
-    //     );
-    //     reader.readAsDataURL(e.target.files[0]);
-    //   }
-    // };
-  
-    const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
-      if (completedCrop) {
-        const { width, height } = e.currentTarget;
-        const pixelCrop = convertToPixelCrop(completedCrop, width / scale, height / scale);
-        setCrop(pixelCrop);
-      }
-    };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const cropCoord = (coord: any) => {
-        setCoordinates(coord)
-  
-    
-    };
-  
-  
-  
-    // const showImg = () => {
-    //   if (
-    //     completedCrop?.width &&
-    //     completedCrop?.height &&
-    //     imgRef.current &&
-    //     previewCanvasRef.current
-    //   ) {
-    //     canvasPreview(
-    //       imgRef.current,
-    //       previewCanvasRef.current,
-    //       completedCrop,
-    //       scale,
-    //       rotate
-    //     );
-    //   }
-    // };
-  
-    // const handleZoomIn = () => {
-    //   setScale(scale + 0.1);
-    // };
-  
-    // const handleZoomOut = () => {
-  
-    //   if (scale > 0.1) {
-    //     setScale(scale - 0.1);
-    //   }
-    // };
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const handleCrush = (e: any) => {
-      setCrushValue(e.target.value)
+
+
+
+  // const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files.length > 0) {
+  //     setCrop(undefined);
+  //     setScale(1);
+  //     const reader = new FileReader();
+  //     reader.addEventListener('load', () =>
+  //       setImgSrc(reader.result?.toString() || '')
+  //     );
+  //     reader.readAsDataURL(e.target.files[0]);
+  //   }
+  // };
+
+  const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    if (completedCrop) {
+      const { width, height } = e.currentTarget;
+      const pixelCrop = convertToPixelCrop(completedCrop, width / scale, height / scale);
+      setCrop(pixelCrop);
     }
+  };
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const handleCement = (e: any) => {
-      setCementValue(e.target.value)
-    }
+  const cropCoord = (coord: any) => {
+    setCoordinates(coord)
+
+
+  };
+
+
+
+  // const showImg = () => {
+  //   if (
+  //     completedCrop?.width &&
+  //     completedCrop?.height &&
+  //     imgRef.current &&
+  //     previewCanvasRef.current
+  //   ) {
+  //     canvasPreview(
+  //       imgRef.current,
+  //       previewCanvasRef.current,
+  //       completedCrop,
+  //       scale,
+  //       rotate
+  //     );
+  //   }
+  // };
+
+  // const handleZoomIn = () => {
+  //   setScale(scale + 0.1);
+  // };
+
+  // const handleZoomOut = () => {
+
+  //   if (scale > 0.1) {
+  //     setScale(scale - 0.1);
+  //   }
+  // };
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const handleCrush2 = (e: any) => {
-      setCrush2Value(e.target.value)
-    }
+  const handleCrush = (e: any) => {
+    setCrushValue(e.target.value)
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const handleLaboutPer = (e: any) => {
-      setLabourPer(e.target.value)
-    }
+  const handleCement = (e: any) => {
+    setCementValue(e.target.value)
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-    const handleCount = (e: any, id: any) => {
-      console.log(matchingElement);
+  const handleCrush2 = (e: any) => {
+    setCrush2Value(e.target.value)
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-      const updatedMatchingElement = matchingElement.map(([value, count]:any, index:any) => {
-        if (id === index) {
-          return [value, parseInt(e.target.value, 10)];
-        }
-        return [value, count];
-      });
-  
-      setMatchingElement(updatedMatchingElement);
-    }
-  
-  
-    const resetCrop = () => {
-      setCompletedCrop(null)
-      setCrop(null)
-    }
-  
-    // const toggleCropping = () => {
-    //   setIsCroppingEnabled((prev) => !prev);
-    // };
-  
-    const findTotalCubicFeet = () => {
+  const handleLaboutPer = (e: any) => {
+    setLabourPer(e.target.value)
+  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+  const handleCount = (e: any, id: any) => {
+    console.log(matchingElement);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-      const totalCubicFeet = matchingElement?.map(([values, quantity]:any) => {
-        if (values === 'c1') {
-          return quantity * 1.5
-        } else if (values === 'c2') {
-          return quantity * 1.5;
-        }
-        else if (values === 'c3') {
-          return quantity * 1.25;
-        }
-        else if (values === 'c4') {
-          return quantity * 1.25;
-        }
-        else if (values === 'f1') {
-          return quantity * 60;
-        }
-        else if (values === 'f2') {
-          return quantity * 72;
-        }
-        else if (values === 'cf1') {
-          return quantity * 106.75;
-        }
-        else if (values === 'cf2') {
-          return quantity * 450
-        }
-        else if (values === 'cf3') {
-          return quantity * 500
-        }
-        else {
-          return 0;
-        }
+    const updatedMatchingElement = matchingElement.map(([value, count]: any, index: any) => {
+      if (id === index) {
+        return [value, parseInt(e.target.value, 10)];
+      }
+      return [value, count];
+    });
+
+    setMatchingElement(updatedMatchingElement);
+  }
+
+
+  const resetCrop = () => {
+    setCompletedCrop(null)
+    setCrop(null)
+  }
+
+  // const toggleCropping = () => {
+  //   setIsCroppingEnabled((prev) => !prev);
+  // };
+
+  const findTotalCubicFeet = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+    const totalCubicFeet = matchingElement?.map(([values, quantity]: any) => {
+      if (values === 'c1') {
+        return quantity * 1.5
+      } else if (values === 'c2') {
+        return quantity * 1.5;
+      }
+      else if (values === 'c3') {
+        return quantity * 1.25;
+      }
+      else if (values === 'c4') {
+        return quantity * 1.25;
+      }
+      else if (values === 'f1') {
+        return quantity * 60;
+      }
+      else if (values === 'f2') {
+        return quantity * 72;
+      }
+      else if (values === 'cf1') {
+        return quantity * 106.75;
+      }
+      else if (values === 'cf2') {
+        return quantity * 450
+      }
+      else if (values === 'cf3') {
+        return quantity * 500
+      }
+      else {
+        return 0;
+      }
+
+    })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+    const total = totalCubicFeet && totalCubicFeet.reduce((acc: any, value: any) => acc + value, 0);
+
+    return total;
+
+  }
+  const totalCubicFeet = findTotalCubicFeet();
+  console.log("Total Cubic Feet:", totalCubicFeet);
+
+
+
+  const smoothScrollTo = (targetId:any) => {
+    const targetElement = document.getElementById(targetId);
   
-      })
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-      const total = totalCubicFeet && totalCubicFeet.reduce((acc: any, value: any) => acc + value, 0);
-    
-      return total;
-  
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth',
+      });
     }
-    const totalCubicFeet = findTotalCubicFeet();
-    console.log("Total Cubic Feet:", totalCubicFeet);
-  
-  
+  };
 
-    const processMapping=()=>{
-  setRegisterLoader(true)
-  toast("We have Generated Map Successfully")
-  setTimeout(()=>{
-    setRegisterLoader(false)
+  const processMapping = () => {
+    setRegisterLoader(true)
+    toast("We have Generated Map Successfully")
+    setTimeout(() => {
+      setRegisterLoader(false)
 
 
-       setCompletedCrop(coordinates);
-          
-        const scaledWidth = Math.floor(coordinates?.width * scale);
-        const scaledHeight = Math.floor(coordinates?.height * scale);
-    
-        const rotatedX1 = coordinates?.x * scale * Math.cos((rotate * Math.PI) / 180) - coordinates?.y * scale * Math.sin((rotate * Math.PI) / 180);
-        const rotatedY1 = coordinates?.x * scale * Math.sin((rotate * Math.PI) / 180) + coordinates?.y * scale * Math.cos((rotate * Math.PI) / 180);
-    
-        const rotatedX2 = rotatedX1 + scaledWidth;
-        const rotatedY2 = rotatedY1 + scaledHeight;
-    
-        const pointObj = {
-          x1: Math.floor(rotatedX1),
-          y1: Math.floor(rotatedY1),
-          x2: Math.floor(rotatedX2),
-          y2: Math.floor(rotatedY2),
-        };
-    
-        const foundElements = arrayConvt.filter((element) => {
-          return (
-            pointObj.x1 <= element.x2 &&
-            pointObj.x2 >= element.x1 &&
-            pointObj.y1 <= element.y2 &&
-            pointObj.y2 >= element.y1
-          );
+      setCompletedCrop(coordinates);
+
+      const scaledWidth = Math.floor(coordinates?.width * scale);
+      const scaledHeight = Math.floor(coordinates?.height * scale);
+
+      const rotatedX1 = coordinates?.x * scale * Math.cos((rotate * Math.PI) / 180) - coordinates?.y * scale * Math.sin((rotate * Math.PI) / 180);
+      const rotatedY1 = coordinates?.x * scale * Math.sin((rotate * Math.PI) / 180) + coordinates?.y * scale * Math.cos((rotate * Math.PI) / 180);
+
+      const rotatedX2 = rotatedX1 + scaledWidth;
+      const rotatedY2 = rotatedY1 + scaledHeight;
+
+      const pointObj = {
+        x1: Math.floor(rotatedX1),
+        y1: Math.floor(rotatedY1),
+        x2: Math.floor(rotatedX2),
+        y2: Math.floor(rotatedY2),
+      };
+
+      const foundElements = arrayConvt.filter((element) => {
+        return (
+          pointObj.x1 <= element.x2 &&
+          pointObj.x2 >= element.x1 &&
+          pointObj.y1 <= element.y2 &&
+          pointObj.y2 >= element.y1
+        );
+      });
+
+      if (foundElements.length > 0) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+        const counts: any = {};
+        foundElements?.forEach((element) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+          const { value }: any = element;
+          counts[value] = (counts[value] || 0) + 1;
         });
+        const arrGot = Object.entries(counts);
+        setMatchingElement(arrGot);
+
     
-        if (foundElements.length > 0) {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-          const counts:any = {};
-          foundElements?.forEach((element) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-            const { value }:any = element;
-            counts[value] = (counts[value] || 0) + 1;
-          });
-          const arrGot = Object.entries(counts);
-          setMatchingElement(arrGot);
-        } else {
-          setMatchingElement(null);
-        }
-        
-        window.scrollTo({
-          top: window.scrollY + 200,
-          behavior: 'smooth'
-        });
-  },3000)
-      
 
-    }
-
-    const generateBqq = () => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-      const queryParams:any = new URLSearchParams();
-      queryParams.append('totalCubicFeet',totalCubicFeet);
-      queryParams.append('labourPer', labourPer);
-      queryParams.append('cubic-Feet',  (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50));
-
-     
-
-      navigate(`/map-details?${queryParams.toString()}`);
-    };
+      } else {
+        setMatchingElement(null);
+      }
     
-  
-  
-    return (
-        <>
-         <ToastContainer style={{fontSize:16}} />
 
-        <div style={{display:'flex', justifyContent:"center"}}>
+
+    }, 5000)
+
+
+  }
+
+  const generateBqq = () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+    const queryParams: any = new URLSearchParams();
+    queryParams.append('totalCubicFeet', totalCubicFeet);
+    queryParams.append('labourPer', labourPer);
+    queryParams.append('cubic-Feet', (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50));
+
+
+
+    navigate(`/map-details?${queryParams.toString()}`);
+  };
+
+
+
+  return (
+    <>
+      <ToastContainer style={{ fontSize: 16 }} />
+
+      <div style={{ display: 'flex', justifyContent: "center" }}>
         <h1>Unit Rates</h1>
 
-        </div>
-         <div className='input_fldsBox'>
-         <Form className='form_fields'>
-      <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control type="number" placeholder='Price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
-      </Form.Group>
-      <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='Price of one bag of crush' onChange={handleCement} value={cementValue} />
-      </Form.Group>
-      <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='Price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
-      </Form.Group>
-      <Form.Group  controlId="exampleForm.ControlInput1">
-        <Form.Control  type="number" placeholder='Rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
-      </Form.Group>
-       
- </Form>
+      </div>
+      <div className='input_fldsBox'>
+        <Form className='form_fields'>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control type="number" placeholder='Price of 1 bag of cement' onChange={handleCrush} value={crushValue} />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control type="number" placeholder='Price of one bag of crush' onChange={handleCement} value={cementValue} />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control type="number" placeholder='Price of one bag of course aggregator' onChange={handleCrush2} value={crush2Value} />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Control type="number" placeholder='Rate of labour per cubic feet' onChange={handleLaboutPer} value={labourPer} />
+          </Form.Group>
 
-        </div>
-<br />
-<br />
+        </Form>
 
-            <div className="container_imgmp">
-                <div className='img_conatainerMp'>
+      </div>
+      <br />
+      <br />
+
+      <div className="container_imgmp">
+        <div className='img_conatainerMp'>
           <ReactCrop
-          style={{width:"100%"}}
-            crop={ crop }
+            style={{ width: "100%" }}
+            crop={crop}
             onChange={(_, percentCrop) => setCrop(percentCrop)}
             onComplete={(c) => cropCoord(c)}
           >
@@ -677,496 +698,494 @@ const MapCom = () => {
               onLoad={onImageLoad}
             />
           </ReactCrop>
-                </div>
-                <br />
-                <div className='img_conatainerFoot'>
-                    <div className='btn_container'>
-                 <button className='plus_icn'>
-                 <img src="plus.svg" alt="" />
+        </div>
+        <br />
+        <div className='img_conatainerFoot'>
+          <div className='btn_container'>
+            <button className='plus_icn'>
+              <img src="plus.svg" alt="" />
 
-                 </button>
-                 <p className='zoom_perc'>100%</p>
+            </button>
+            <p className='zoom_perc'>100%</p>
 
-                 <button className='minus_icn'>
-                 <img src="minus.svg" alt="" />
+            <button className='minus_icn'>
+              <img src="minus.svg" alt="" />
 
-                 </button>
+            </button>
 
-                    </div>
-                    <div>
-                        <button className='reset_btn'
-                        onClick={resetCrop}
-                        >Reset</button>
-                    </div>
-                </div>
+          </div>
+          <div>
+            <button className='reset_btn'
+              onClick={resetCrop}
+            >Reset</button>
+          </div>
+        </div>
 
-            </div>
-
-
-            <div className='processMapCont'>
-                {!registerLoader ?
-                                                   <DynamicBtn textBtn='PROCESS MAP' classBtn='processMap' btnFunc={processMapping} />
-
-                                :
-                                
-                                <Button 
-                                style={{backgroundColor:'white', color:"purple", fontSize:16}}
-                                className='login_signBtn'
-                                disabled>
-      <Spinner 
-      
-      animation="border" role="status" aria-hidden="true" />
-      <span 
-       
-      className="sr-only">Loading...</span>
-    </Button>
-                                }
-            </div>
+      </div>
 
 
-            {completedCrop && crop &&
-          <div
-            style={{
-              display: 'flex',
-              marginTop: 50,
-              justifyContent: 'center',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: 30,
-            }}
-          >
-            {!!completedCrop && (
-              <>
-                
+      <div className='processMapCont'>
+        {!registerLoader ?
+         <DynamicBtn textBtn='PROCESS MAP' classBtn='processMap' btnFunc={processMapping} />
+          :
+
+          <Button
+            style={{ backgroundColor: 'white', color: "purple", fontSize: 16 }}
+            className='login_signBtn'
+            disabled>
+            <Spinner
+
+              animation="border" role="status" aria-hidden="true" />
+            <span
+
+              className="sr-only">Loading...</span>
+          </Button>
+        }
+      </div>
 
 
-             
-                {!!matchingElement && (
-                  <div id='points_sec'>
-                    <h2
-                      style={{
-                        marginTop: 50,
-                        marginBottom: 50,
-                        textAlign: 'center',
-                      }}
-                    >
-                      Matching Elements and Quantities
-                    </h2>
-                    {matchingElement?.map(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-                      ([value, count]:any, id: any) => (
-                        <div key={value} style={{ display: "flex", gap: 40, margin: 20 }}>
-                          <span className='pointName' style={{ fontWeight: 'bold', marginTop: 10 }}>
-                            {value}:
-                          </span>
+      {completedCrop && crop &&
+        <div
+          style={{
+            display: 'flex',
+            marginTop: 50,
+            justifyContent: 'center',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 30,
+          }}
+        >
+          {!!completedCrop && (
+            <>
+
+
+
+              {!!matchingElement && (
+                <div id='points_sec'>
+                  <h2
+                    style={{
+                      marginTop: 50,
+                      marginBottom: 50,
+                      textAlign: 'center',
+                    }}
+                  >
+                    Matching Elements and Quantities
+                  </h2>
+                  {matchingElement?.map(
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+                    ([value, count]: any, id: any) => (
+                      <div  key={value} style={{ display: "flex", gap: 40, margin: 20 }}>
+                        <span className='pointName' style={{ fontWeight: 'bold', marginTop: 10 }}>
+                          {value}:
+                        </span>
+
+                        <input
+                          className='count_input'
+
+                          type="number" value={count} onChange={(e) => { handleCount(e, id) }} />
+
+
+
+                        <span className='pointName2' style={{ fontWeight: "bold" }}>
+                          Total cubic feet:
 
                           <input
+                            style={{ marginLeft: 20 }}
+                            type="number"
+                            className='count_input'
+                            value={value === 'c1' ? count * 1.5 :
+                              value === 'c2' ? count * 1.5 :
+                                value === 'c3' ? count * 1.25 :
+                                  value === 'c4' ? count * 1.25 :
+                                    value === 'f1' ? count * 60 :
+                                      value === 'f2' ? count * 72 :
+                                        value === 'cf1' ? count * 106.75 :
+                                          value === 'cf2' ? count * 450 :
+                                            value === 'cf3' ? count * 500 :
+                                              0
+                            }
+                            disabled
+                          />
+                        </span>
+
+
+
+
+                        <span className='pointName2' style={{ fontWeight: "bold" }}>Total concrete Price for cubic feet: D =
+
+                          <input
+                            style={{ marginLeft: 20 }}
+
+                            type="number"
                             className='count_input'
 
-                            type="number" value={count} onChange={(e) => { handleCount(e, id) }} />
-
-
-
-                          <span className='pointName2' style={{ fontWeight: "bold" }}>
-                            Total cubic feet:
-
-                            <input
-                            style={{marginLeft:20}}
-                              type="number"
-                              className='count_input'
-                              value={value === 'c1' ? count * 1.5 :
-                                value === 'c2' ? count * 1.5 :
-                                  value === 'c3' ? count * 1.25 :
-                                    value === 'c4' ? count * 1.25 :
-                                      value === 'f1' ? count * 60 :
-                                        value === 'f2' ? count * 72 :
-                                          value === 'cf1' ? count * 106.75 :
-                                            value === 'cf2' ? count * 450 :
-                                              value === 'cf3' ? count * 500 :
+                            value={
+                              (value === 'c1' ? count * 1.5 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                value === 'c2' ? count * 1.5 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                  value === 'c3' ? count * 1.25 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                    value === 'c4' ? count * 1.25 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                      value === 'f1' ? count * 60 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                        value === 'f2' ? count * 72 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                          value === 'cf1' ? count * 106.75 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                            value === 'cf2' ? count * 450 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
+                                              value === 'cf3' ? count * 500 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
                                                 0
-                              }
-                              disabled
-                            />
-                          </span>
+                              )
+                            }
+                            disabled
+                          />
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
 
-
-
-
-                          <span className='pointName2' style={{ fontWeight: "bold" }}>Total concrete Price for cubic feet: D =
-
-                            <input
-                                                        style={{marginLeft:20}}
-
-                              type="number"
-                              className='count_input'
-
-                              value={
-                                (value === 'c1' ? count * 1.5 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                  value === 'c2' ? count * 1.5 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                    value === 'c3' ? count * 1.25 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                      value === 'c4' ? count * 1.25 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                        value === 'f1' ? count * 60 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                          value === 'f2' ? count * 72 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                            value === 'cf1' ? count * 106.75 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                              value === 'cf2' ? count * 450 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                                value === 'cf3' ? count * 500 * (2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) :
-                                                  0
-                                )
-                              }
-                              disabled
-                            />
-                          </span>
-                        </div>
-                      )
-                    )}
-                  </div>
-                )}
-
-<div className='processMapCont'>
+              <div className='processMapCont'>
                 <DynamicBtn textBtn='Generate BQQ' classBtn='processMap' btnFunc={generateBqq} />
-            </div>
+              </div>
 
-                {matchingElement &&
+              {matchingElement &&
 
-<div className='table_boot'>
-<Table    striped  hover variant="light">
-<thead >
-<tr >
-                       <th>
-                         S.No
-                       </th>
-                       <th>
-                         Name of Item
-                       </th>
-                       <th>
-                         Quantity
-                       </th>
+                <div className='table_boot' >
+                  <Table striped hover variant="light">
+                    <thead >
+                      <tr >
+                        <th>
+                          S.No
+                        </th>
+                        <th>
+                          Name of Item
+                        </th>
+                        <th>
+                          Quantity
+                        </th>
 
-                       <th>
-                         Unit
-                       </th>
+                        <th>
+                          Unit
+                        </th>
 
-                       <th>
-                         rate
-                       </th>
-                       <th>
-                         per
-                       </th>
+                        <th>
+                          rate
+                        </th>
+                        <th>
+                          per
+                        </th>
 
-                       <th>
-                         Amount (RS)
-                       </th>
+                        <th>
+                          Amount (RS)
+                        </th>
 
 
 
-                     </tr>
-</thead>
-<tbody>
-                     <tr>
-                       <td>1</td>
-                       <td>Excavation
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Excavation
 
-                       </td>
+                        </td>
 
-                       <td>
+                        <td>
 
-                         {totalCubicFeet}
+                          {totalCubicFeet}
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>
+                        </td>
+                        <td>
 
-                         {labourPer}
+                          {labourPer}
 
-                       </td>
-                       <td>Per Cubic Feet
+                        </td>
+                        <td>Per Cubic Feet
 
-                       </td>
+                        </td>
 
-                       <td>
-                         {totalCubicFeet * labourPer}
+                        <td>
+                          {totalCubicFeet * labourPer}
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-                     <tr>
-                       <td>2</td>
-                       <td>P.P.C. Work(M-15)
+                      <tr>
+                        <td>2</td>
+                        <td>P.P.C. Work(M-15)
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
 
-                     <tr>
-                       <td>3</td>
-                       <td>Footing Concrete(M-25)
+                      <tr>
+                        <td>3</td>
+                        <td>Footing Concrete(M-25)
 
-                       </td>
+                        </td>
 
-                       <td>
+                        <td>
 
-                         {totalCubicFeet}
+                          {totalCubicFeet}
 
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>
+                        </td>
+                        <td>
 
-                       {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)}
+                          {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)}
 
 
-                       </td>
-                       <td>
+                        </td>
+                        <td>
 
- Per Cubic Feet
-                       </td>
+                          Per Cubic Feet
+                        </td>
 
-                       <td>
+                        <td>
 
-                         {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50)* totalCubicFeet}
+                          {(2 * crushValue + 8 * cementValue + 16 * crush2Value / 50) * totalCubicFeet}
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
-                     <tr>
-                       <td>4</td>
-                       <td>Steel Quantity in Footing
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Steel Quantity in Footing
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>kg
+                        </td>
+                        <td>kg
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-                     <tr>
-                       <td>5</td>
-                       <td>DPC Work at plinth (M-20)
+                      <tr>
+                        <td>5</td>
+                        <td>DPC Work at plinth (M-20)
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>
-                         not available
+                        </td>
+                        <td>
+                          not available
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-                     <tr>
-                       <td>6</td>
-                       <td>Plinth beam concrete
+                      <tr>
+                        <td>6</td>
+                        <td>Plinth beam concrete
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>
-                       not available
+                        </td>
+                        <td>
+                          not available
 
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-                     <tr>
-                       <td>7</td>
-                       <td>Brickwork in superstructure
+                      <tr>
+                        <td>7</td>
+                        <td>Brickwork in superstructure
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
 
-                     <tr>
-                       <td>8</td>
-                       <td>Concrete in beams column (M 25)
+                      <tr>
+                        <td>8</td>
+                        <td>Concrete in beams column (M 25)
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
 
-                     <tr>
-                       <td>9</td>
-                       <td>Steel in beam, column
+                      <tr>
+                        <td>9</td>
+                        <td>Steel in beam, column
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-                     <tr>
-                       <td>10</td>
-                       <td>Plaster work
+                      <tr>
+                        <td>10</td>
+                        <td>Plaster work
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
-                       <td>cubic feet
+                        </td>
+                        <td>cubic feet
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
-                       <td>1
+                        </td>
+                        <td>1
 
-                       </td>
+                        </td>
 
-                       <td>1
+                        <td>1
 
-                       </td>
+                        </td>
 
 
 
-                     </tr>
+                      </tr>
 
-</tbody>
-</Table>
-</div>  
-                }
+                    </tbody>
+                  </Table>
+                </div>
+              }
 
 
-             
 
 
-              </>
-            )}
-          </div>
-        }
 
-        </>
-    )
+            </>
+          )}
+        </div>
+      }
+
+    </>
+  )
 }
 
 export default MapCom
