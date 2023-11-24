@@ -691,7 +691,8 @@ const MapCom = () => {
           >
             <img
               alt="Crop me"
-              src={imgGet}
+              // src={imgGet}
+              src='map-colored-img.png'
               style={{
                 maxWidth: '100%',
               }}
