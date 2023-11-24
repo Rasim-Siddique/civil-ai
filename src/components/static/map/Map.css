@@ -42,7 +42,8 @@
     display: flex;
 
     justify-content: center;
-    gap: 2.0rem;
+    /* gap: 2.0rem; */
+
   }
   .input_fldsBox input{
     width: 30.0rem;
@@ -108,8 +109,6 @@ background-color: #FFFFFF;
   }
   .img_conatainerFoot{
     border-top: 2px solid rgb(233, 226, 226);
-    /* height: 20vh; */
-    width: 1
 
   }
 
@@ -246,3 +245,32 @@ color: #FF6813;
   .table_boot th{
     padding:10;
   }
+
+  @media only screen and (max-width:1300px) {
+   
+    
+    /* .input_fldsBox input{ */
+      /* width: 30rem; */
+    /* } */
+     }
+
+  @media only screen and (max-width: 778px) {
+    .logo_sec img{
+       width: 90px;
+       height: 90px;
+    }
+     .input_fldsBox{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: auto;
+      align-items: center;
+    }
+
+    .form_fields{
+      flex-direction: column;
+    }
+    .input_fldsBox input{
+      width: 50rem;
+    }
+     }
