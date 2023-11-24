@@ -6,7 +6,7 @@
 // import CheckBox from "./CheckBoxes";
 
 import Input from "./Input";
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
 const FormikControl = (props: any) => {
   const {control, ...rest} = props;
   switch (control) {
