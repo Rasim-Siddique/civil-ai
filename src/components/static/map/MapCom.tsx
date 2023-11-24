@@ -4,14 +4,10 @@ import ReactCrop, { convertToPixelCrop } from 'react-image-crop';
 import { Form, Table } from 'react-bootstrap';
 import { Button, Spinner } from 'react-bootstrap';
 import { ToastContainer, toast } from "react-toastify";
-
-
 import './Map.css';
-
 import 'react-image-crop/dist/ReactCrop.css';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { animateScroll as scroll } from 'react-scroll';
 
 const jsonObject = {
   "objects": [
@@ -393,7 +389,7 @@ const MapCom = () => {
   const [registerLoader, setRegisterLoader] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-  const imgGet: any = localStorage.getItem('imgValue');
+  // const imgGet: any = localStorage.getItem('imgValue');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
   const [coordinates, setCoordinates] = useState<any>('');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
@@ -418,7 +414,6 @@ const MapCom = () => {
 
  useEffect(()=>{
   if(matchingElement){
-
   smoothScrollTo("points_sec");
 }
 
@@ -568,7 +563,7 @@ const MapCom = () => {
   console.log("Total Cubic Feet:", totalCubicFeet);
 
 
-
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any 
   const smoothScrollTo = (targetId:any) => {
     const targetElement = document.getElementById(targetId);
   
