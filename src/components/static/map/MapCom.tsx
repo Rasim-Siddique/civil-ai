@@ -517,7 +517,7 @@ const MapCom = () => {
   const resetCrop = () => {
     setCompletedCrop(null)
     setCrop(null)
-    window.location.reload(true)
+    window.location.reload()
   }
 
   // const toggleCropping = () => {
