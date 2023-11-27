@@ -389,7 +389,7 @@ const MapCom = () => {
   const [registerLoader, setRegisterLoader] = useState(false)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
-  // const imgGet: any = localStorage.getItem('imgValue');
+  const imgGet: any = localStorage.getItem('imgValue');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
   const [coordinates, setCoordinates] = useState<any>('');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any 
@@ -434,6 +434,10 @@ const MapCom = () => {
   //     reader.readAsDataURL(e.target.files[0]);
   //   }
   // };
+
+
+
+  console.log("imgGet::::", imgGet)
 
   const onImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     if (completedCrop) {
@@ -708,8 +712,8 @@ const MapCom = () => {
               alt="Crop me"
               // src='j2.jpg'
 
-              // src={imgGet}
-              src='map-colored-img.png'
+              src={imgGet}
+              // src='map-colored-img.png'
               style={{
                 maxWidth: '100%',
               }}
@@ -856,10 +860,14 @@ const MapCom = () => {
                 </div>
               )}
 
-              <div className='processMapCont'>
-                <DynamicBtn textBtn='Generate BQQ' classBtn='processMap' btnFunc={generateBqq} />
-              </div>
+              {completedCrop &&
+                 <div className='processMapCont'>
+                 <DynamicBtn textBtn='Generate BQQ' classBtn='processMap' btnFunc={generateBqq} />
+               </div>
+ 
+              }
 
+           
               {matchingElement &&
 
                 <div className='table_boot' >
