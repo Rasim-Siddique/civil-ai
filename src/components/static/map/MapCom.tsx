@@ -513,6 +513,7 @@ const MapCom = () => {
   const resetCrop = () => {
     setCompletedCrop(null)
     setCrop(null)
+    window.location.reload(true)
   }
 
   // const toggleCropping = () => {
@@ -623,7 +624,26 @@ const MapCom = () => {
     
 
       } else {
-        setMatchingElement(null);
+    
+
+        const foundElements = arrayConvt.filter((element) => {
+          return element;
+        });
+  
+        if (foundElements.length > 0) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+          const counts: any = {};
+          foundElements?.forEach((element) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any 
+            const { value }: any = element;
+            counts[value] = (counts[value] || 0) + 1;
+          });
+          const arrGot = Object.entries(counts);
+          setMatchingElement(arrGot);
+  
+      
+  
+        }
       }
     
 
@@ -686,6 +706,8 @@ const MapCom = () => {
           >
             <img
               alt="Crop me"
+              // src='j2.jpg'
+
               // src={imgGet}
               src='map-colored-img.png'
               style={{
@@ -740,7 +762,6 @@ const MapCom = () => {
       </div>
 
 
-      {completedCrop && crop &&
         <div
           style={{
             display: 'flex',
@@ -751,8 +772,6 @@ const MapCom = () => {
             gap: 30,
           }}
         >
-          {!!completedCrop && (
-            <>
 
 
 
@@ -1175,10 +1194,7 @@ const MapCom = () => {
 
 
 
-            </>
-          )}
         </div>
-      }
 
     </>
   )
